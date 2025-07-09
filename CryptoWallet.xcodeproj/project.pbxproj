@@ -14,7 +14,7 @@
 		A5A308112E1EEDCB00412FDD /* Exceptions for "CryptoWallet" folder in "CryptoWallet" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				System/Info.plist,
 			);
 			target = A5A307FE2E1EEDC900412FDD /* CryptoWallet */;
 		};
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YK554KR89;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CryptoWallet/Info.plist;
+				INFOPLIST_FILE = CryptoWallet/System/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -175,7 +175,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YK554KR89;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CryptoWallet/Info.plist;
+				INFOPLIST_FILE = CryptoWallet/System/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
