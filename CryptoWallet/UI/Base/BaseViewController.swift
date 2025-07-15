@@ -7,7 +7,8 @@
 
 import UIKit
 
-class BaseViewController<VM: BaseViewModel>: UIViewController {
+class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
+    var rootView: V!
     var viewModel: VM!
     
     init() {
