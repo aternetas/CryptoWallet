@@ -32,4 +32,19 @@ extension UIButton {
         
         self.configuration = configuration
     }
+    
+    convenience init(image: UIImage,
+                     backgroundColor: UIColor = .white,
+                     cornerRadius: CGFloat = 25.0) {
+        self.init()
+        layer.cornerRadius = cornerRadius
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .capsule
+        configuration.baseBackgroundColor = backgroundColor
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
 }

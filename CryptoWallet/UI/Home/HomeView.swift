@@ -23,6 +23,10 @@ final class HomeView: BaseView, BaseViewProtocol {
                                                        backgroundColor: .white,
                                                        cornerRadius: 40.0)
     
+    private lazy var menuButton: UIButton = .init(image: .dots)
+    
+    private lazy var stackImageView: UIImageView = .init(image: .stack)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,7 +45,10 @@ final class HomeView: BaseView, BaseViewProtocol {
     func initConstraints() {
         addSubviews([homeLabel,
                      affiliateProgramLabel,
-                     learnMoreButton])
+                     learnMoreButton,
+                     menuButton,
+                     stackImageView])
+        
         
         homeLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(10)
@@ -57,6 +64,18 @@ final class HomeView: BaseView, BaseViewProtocol {
             make.top.equalTo(affiliateProgramLabel.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(25)
             make.height.equalTo(35)
+        }
+        
+        menuButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(25)
+            make.centerY.equalTo(homeLabel.snp.centerY)
+            make.height.width.equalTo(48)
+        }
+        
+        stackImageView.snp.makeConstraints { make in
+            make.top.equalTo(menuButton.snp.bottom).offset(21)
+            make.trailing.equalToSuperview().inset(-56)
+            make.height.width.equalTo(242)
         }
     }
 }
