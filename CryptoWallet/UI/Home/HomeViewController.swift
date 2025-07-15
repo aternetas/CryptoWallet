@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class HomeViewController: BaseViewController<HomeViewModel> {
-    private let rootView = HomeView()
+final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     
     override init() {
         super.init()
         
         viewModel = HomeViewModel()
+        rootView = HomeView()
     }
     
     @MainActor required init?(coder: NSCoder) {
