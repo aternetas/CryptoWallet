@@ -23,11 +23,18 @@ final class HomeView: BaseView, BaseViewProtocol {
                                                        backgroundColor: .white,
                                                        cornerRadius: 40.0)
     
-    private lazy var menuButton: UIButton = .init(image: .dots)
+    private lazy var menuButton: UIButton = .init(image: .dots,
+                                                  backgroundColor: .white)
     
     private lazy var stackImageView: UIImageView = .init(image: .stack)
     
     private lazy var cardView: CardView = .init()
+    
+    private lazy var trendingLabel: UILabel = .init(text: "Trending",
+                                                    font: .medium20,
+                                                    textColor: .black)
+    
+    private lazy var sortButton: UIButton = .init(image: .order)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,6 +58,9 @@ final class HomeView: BaseView, BaseViewProtocol {
                      menuButton,
                      stackImageView,
                      cardView])
+        
+        cardView.addSubviews([trendingLabel,
+                              sortButton])
         
         homeLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(10)
@@ -83,6 +93,17 @@ final class HomeView: BaseView, BaseViewProtocol {
         cardView.snp.makeConstraints { make in
             make.top.equalTo(learnMoreButton.snp.bottom).offset(55)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        trendingLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(24)
+            make.leading.equalToSuperview().offset(25)
+        }
+        
+        sortButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(25)
+            make.centerY.equalTo(trendingLabel.snp.centerY)
+            make.height.width.equalTo(24)
         }
     }
 }

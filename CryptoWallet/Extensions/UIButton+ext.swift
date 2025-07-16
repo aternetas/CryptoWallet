@@ -34,7 +34,7 @@ extension UIButton {
     }
     
     convenience init(image: UIImage,
-                     backgroundColor: UIColor = .white,
+                     backgroundColor: UIColor,
                      cornerRadius: CGFloat = 25.0) {
         self.init()
         layer.cornerRadius = cornerRadius
@@ -42,6 +42,16 @@ extension UIButton {
         var configuration = UIButton.Configuration.filled()
         configuration.cornerStyle = .capsule
         configuration.baseBackgroundColor = backgroundColor
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
+    
+    convenience init(image: UIImage) {
+        self.init()
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .clear
         configuration.image = image
         configuration.imagePlacement = .all
         
