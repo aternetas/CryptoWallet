@@ -14,6 +14,9 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         
         viewModel = HomeViewModel()
         rootView = HomeView()
+        
+        rootView.trendingCurrenciesTableView.delegate = self
+        rootView.trendingCurrenciesTableView.dataSource = self
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -24,5 +27,24 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         super.loadView()
         
         view = rootView
+    }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: TrendingCurrencyCell = tableView.dequeueReusableCell(withIdentifier: TrendingCurrencyCell.identifier, for: indexPath) as! TrendingCurrencyCell
+        
+        let mockVM = TrendingCurrencyVM(id: "", name: "Bitcoin", symbol: "BTC", priceUSD: 13221.55, media: .btc, percentChangeUSDLast24Hours: 2.2, delegate: nil)
+        cell.bind(vm: mockVM)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

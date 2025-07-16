@@ -1,5 +1,5 @@
 //
-//  Currency.swift
+//  CurrencyMedia.swift
 //  CryptoWallet
 //
 //  Created by aternetas on 16.07.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Currency: String {
+enum CurrencyMedia: String {
     case btc = "Bitcoin",
          eth = "Ethereum",
          tron = "TRON",

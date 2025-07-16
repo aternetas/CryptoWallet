@@ -36,6 +36,14 @@ final class HomeView: BaseView, BaseViewProtocol {
     
     private lazy var sortButton: UIButton = .init(image: .order)
     
+    lazy var trendingCurrenciesTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(TrendingCurrencyCell.self, forCellReuseIdentifier: TrendingCurrencyCell.identifier)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -60,7 +68,8 @@ final class HomeView: BaseView, BaseViewProtocol {
                      cardView])
         
         cardView.addSubviews([trendingLabel,
-                              sortButton])
+                              sortButton,
+                              trendingCurrenciesTableView])
         
         homeLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(10)
@@ -104,6 +113,11 @@ final class HomeView: BaseView, BaseViewProtocol {
             make.trailing.equalToSuperview().inset(25)
             make.centerY.equalTo(trendingLabel.snp.centerY)
             make.height.width.equalTo(24)
+        }
+        
+        trendingCurrenciesTableView.snp.makeConstraints { make in
+            make.top.equalTo(trendingLabel.snp.bottom).offset(16)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
