@@ -8,7 +8,6 @@
 import UIKit
 
 final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
-    
     override init() {
         super.init()
         
