@@ -9,6 +9,6 @@ import UIKit
 
 extension UIColor {
     static var white = UIColor(resource: .white)
-    static var gray = UIColor(resource: .gray)
+    static var darkGray = UIColor(resource: .darkGray)
     static var black = UIColor(resource: .black)
 }
