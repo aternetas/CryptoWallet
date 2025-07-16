@@ -27,6 +27,8 @@ final class HomeView: BaseView, BaseViewProtocol {
     
     private lazy var stackImageView: UIImageView = .init(image: .stack)
     
+    private lazy var cardView: CardView = .init()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -47,8 +49,8 @@ final class HomeView: BaseView, BaseViewProtocol {
                      affiliateProgramLabel,
                      learnMoreButton,
                      menuButton,
-                     stackImageView])
-        
+                     stackImageView,
+                     cardView])
         
         homeLabel.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(10)
@@ -76,6 +78,11 @@ final class HomeView: BaseView, BaseViewProtocol {
             make.top.equalTo(menuButton.snp.bottom).offset(21)
             make.trailing.equalToSuperview().inset(-56)
             make.height.width.equalTo(242)
+        }
+        
+        cardView.snp.makeConstraints { make in
+            make.top.equalTo(learnMoreButton.snp.bottom).offset(55)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
