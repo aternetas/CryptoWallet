@@ -1,0 +1,40 @@
+//
+//  Currency.swift
+//  CryptoWallet
+//
+//  Created by aternetas on 16.07.2025.
+//
+
+import UIKit
+
+enum Currency: String {
+    case btc = "Bitcoin",
+         eth = "Ethereum",
+         tron = "TRON",
+         dogecoin = "Dogecoin",
+         tether = "Tether",
+         stellar = "Stellar",
+         cardano = "Cardano",
+         xrp = "XRP"
+    
+    var icon: UIImage {
+        switch self {
+        case .btc:
+            UIImage(resource: .bitcoin)
+        case .eth:
+            UIImage(resource: .ethereum)
+        case .tron:
+            UIImage(resource: .TRON)
+        case .dogecoin:
+            UIImage(resource: .dogecoin)
+        case .tether:
+            UIImage(resource: .tether)
+        case .stellar:
+            UIImage(resource: .stellar)
+        case .cardano:
+            UIImage(resource: .cardano)
+        case .xrp:
+            UIImage(resource: .XRP)
+        }
+    }
+}
