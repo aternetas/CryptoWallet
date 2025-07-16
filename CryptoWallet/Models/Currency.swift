@@ -37,4 +37,25 @@ enum Currency: String {
             UIImage(resource: .XRP)
         }
     }
+    
+    var backgroundColor: UIColor {
+        switch self {
+        case .btc:
+            UIColor(resource: .bitcoinBackground)
+        case .eth:
+            UIColor(resource: .ethereumBackground)
+        case .tron:
+            UIColor(resource: .tronBackground)
+        case .dogecoin:
+            UIColor(resource: .dogecoinBackground)
+        case .tether:
+            UIColor(resource: .tetherBackround)
+        case .stellar:
+            UIColor(resource: .stellarBackground)
+        case .cardano:
+            UIColor(resource: .cardanoBackground)
+        case .xrp:
+            UIColor(resource: .xrpBackground)
+        }
+    }
 }
