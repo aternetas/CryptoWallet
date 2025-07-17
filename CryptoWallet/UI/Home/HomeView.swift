@@ -59,6 +59,7 @@ final class HomeView: BaseView, BaseViewProtocol {
     
     func setupView() {
         backgroundColor = .pink
+        menuView.isHidden = true
     }
     
     func initConstraints() {

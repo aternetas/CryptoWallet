@@ -15,6 +15,8 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         viewModel.delegate = self
         rootView = HomeView()
         
+        rootView.menuView.delegate = self
+        
         rootView.trendingCurrenciesTableView.delegate = self
         rootView.trendingCurrenciesTableView.dataSource = self
     }
@@ -42,13 +44,28 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     }
     
     private func tapOnMenuButton() {
-        viewModel?.changeMenuVisibility()
+        viewModel.changeMenuVisibility()
     }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
     func changeMenuVisibility() {
         rootView.menuView.isHidden = !rootView.menuView.isHidden
+    }
+    
+    func logOut() {
+        setAsRootViewController(AnyVC())
+    }
+}
+
+extension HomeViewController: MenuViewDelegateProtocol {
+    func tapOnMenuCell(_ type: MenuType) {
+        switch type {
+        case .refresh:
+            viewModel.refreshData()
+        case .exit:
+            viewModel.logOut()
+        }
     }
 }
 

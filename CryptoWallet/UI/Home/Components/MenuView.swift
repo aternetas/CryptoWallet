@@ -8,16 +8,46 @@
 import UIKit
 import SnapKit
 
+enum MenuType {
+    case refresh, exit
+    
+    var image: UIImage {
+        switch self {
+        case .refresh:
+                .rocket
+        case .exit:
+                .trash
+        }
+    }
+    
+    var text: String {
+        switch self {
+        case .refresh:
+            "Обновить"
+        case .exit:
+            "Выйти"
+        }
+    }
+}
+
+protocol MenuViewDelegateProtocol: AnyObject {
+    func tapOnMenuCell(_ type: MenuType)
+}
+
 final class MenuView: BaseView, BaseViewProtocol {
-    private let menuCells: [MenuViewCell] = [MenuViewCell(image: .rocket, text: "Обновить"),
-                                             MenuViewCell(image: .trash, text: "Выйти")]
+    weak var delegate: MenuViewDelegateProtocol?
+    
+    private let menuCells: [MenuViewCell] = [MenuViewCell(.refresh),
+                                             MenuViewCell(.exit)]
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 16.0
+        stackView.isUserInteractionEnabled = true
         
+        menuCells.forEach { $0.delegate = self }
         stackView.addArrangedSubviews(menuCells)
         
         return stackView
@@ -46,5 +76,11 @@ final class MenuView: BaseView, BaseViewProtocol {
             make.top.bottom.equalToSuperview().inset(16)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+    }
+}
+
+extension MenuView: MenuViewCellListenerProtocol {
+    func tapOnCell(_ type: MenuType) {
+        delegate?.tapOnMenuCell(type)
     }
 }

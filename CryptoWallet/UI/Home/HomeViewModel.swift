@@ -9,12 +9,21 @@ import Foundation
 
 protocol HomeViewModelDelegate: AnyObject {
     func changeMenuVisibility()
+    func logOut()
 }
 
 final class HomeViewModel: BaseViewModel {
     weak var delegate: HomeViewModelDelegate?
     
+    func refreshData() {
+        
+    }
+    
     func changeMenuVisibility() {
         delegate?.changeMenuVisibility()
+    }
+    
+    func logOut() {
+        delegate?.logOut()
     }
 }
