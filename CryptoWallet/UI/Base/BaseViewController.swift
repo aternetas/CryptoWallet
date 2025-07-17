@@ -18,4 +18,8 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setAsRootViewController(_ viewController: UIViewController) {
+        UIApplication.shared.firstKeyWindow?.rootViewController = viewController
+    }
 }
