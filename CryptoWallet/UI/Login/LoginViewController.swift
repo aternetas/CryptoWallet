@@ -16,6 +16,7 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
         rootView = LoginView()
     }
     
+    @available(*, unavailable)
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

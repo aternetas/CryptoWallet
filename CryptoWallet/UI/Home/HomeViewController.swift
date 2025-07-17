@@ -21,6 +21,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         rootView.trendingCurrenciesTableView.dataSource = self
     }
     
+    @available(*, unavailable)
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
