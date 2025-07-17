@@ -55,7 +55,7 @@ extension HomeViewController: HomeViewModelDelegate {
     }
     
     func logOut() {
-        setAsRootViewController(AnyVC())
+        setAsRootViewController(LoginViewController())
     }
 }
 
