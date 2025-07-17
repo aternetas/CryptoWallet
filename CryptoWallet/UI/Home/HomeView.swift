@@ -23,8 +23,10 @@ final class HomeView: BaseView, BaseViewProtocol {
                                                        backgroundColor: .white,
                                                        cornerRadius: 40.0)
     
-    private lazy var menuButton: UIButton = .init(image: .dots,
+    lazy var menuButton: UIButton = .init(image: .dots,
                                                   backgroundColor: .white)
+    
+    lazy var menuView: MenuView = .init()
     
     private lazy var stackImageView: UIImageView = .init(image: .stack)
     
@@ -65,6 +67,7 @@ final class HomeView: BaseView, BaseViewProtocol {
                      learnMoreButton,
                      menuButton,
                      stackImageView,
+                     menuView,
                      cardView])
         
         cardView.addSubviews([trendingLabel,
@@ -91,6 +94,11 @@ final class HomeView: BaseView, BaseViewProtocol {
             make.trailing.equalToSuperview().inset(25)
             make.centerY.equalTo(homeLabel.snp.centerY)
             make.height.width.equalTo(48)
+        }
+        
+        menuView.snp.makeConstraints { make in
+            make.top.equalTo(menuButton.snp.bottom).offset(8)
+            make.trailing.equalToSuperview().inset(29)
         }
         
         stackImageView.snp.makeConstraints { make in

@@ -7,6 +7,14 @@
 
 import Foundation
 
+protocol HomeViewModelDelegate: AnyObject {
+    func changeMenuVisibility()
+}
+
 final class HomeViewModel: BaseViewModel {
+    weak var delegate: HomeViewModelDelegate?
     
+    func changeMenuVisibility() {
+        delegate?.changeMenuVisibility()
+    }
 }

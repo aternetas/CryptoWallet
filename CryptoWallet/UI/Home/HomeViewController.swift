@@ -12,6 +12,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         super.init()
         
         viewModel = HomeViewModel()
+        viewModel.delegate = self
         rootView = HomeView()
         
         rootView.trendingCurrenciesTableView.delegate = self
@@ -26,6 +27,28 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         super.loadView()
         
         view = rootView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addButtonActions()
+    }
+    
+    private func addButtonActions() {
+        rootView.menuButton.addAction(UIAction { [weak self] _ in
+            self?.tapOnMenuButton()
+        }, for: .touchUpInside)
+    }
+    
+    private func tapOnMenuButton() {
+        viewModel?.changeMenuVisibility()
+    }
+}
+
+extension HomeViewController: HomeViewModelDelegate {
+    func changeMenuVisibility() {
+        rootView.menuView.isHidden = !rootView.menuView.isHidden
     }
 }
 
