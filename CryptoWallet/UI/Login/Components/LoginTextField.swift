@@ -47,10 +47,6 @@ final class LoginTextField: UITextField, BaseViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-//        bounds.inset(by: insets)
-//    }
-    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         bounds.inset(by: insets)
     }
@@ -60,6 +56,8 @@ final class LoginTextField: UITextField, BaseViewProtocol {
     }
     
     func setupView() {
+        delegate = self
+        
         layer.cornerRadius = 25
         layer.backgroundColor = UIColor(resource: .white).withAlphaComponent(0.8).cgColor
         
@@ -68,9 +66,29 @@ final class LoginTextField: UITextField, BaseViewProtocol {
         
         attributedPlaceholder = NSAttributedString(string: type.placeholder,
                                                    attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
+        
+        keyboardType = .default
+        returnKeyType = .continue
+        
+        let imageLeftPadding: CGFloat = 10
+        let imageWidth: CGFloat = 32
+        let imageHeight: CGFloat = 32
+        
+        let imageView = UIImageView(image: type.image)
+        imageView.frame = CGRect(x: imageLeftPadding, y: 0, width: imageWidth, height: imageHeight)
+        
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: imageWidth + imageLeftPadding, height: imageHeight))
+        containerView.addSubview(imageView)
+        
+        leftView = containerView
+        leftViewMode = .always
     }
     
-    func initConstraints() {
-        
+    func initConstraints() {}
+}
+
+extension LoginTextField: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

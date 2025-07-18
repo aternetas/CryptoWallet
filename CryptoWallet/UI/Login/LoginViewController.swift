@@ -5,7 +5,7 @@
 //  Created by aternetas on 17.07.2025.
 //
 
-import Foundation
+import UIKit
 
 final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
     override init() {
@@ -13,6 +13,7 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
         
         viewModel = LoginViewModel()
         viewModel.delegate = self
+        
         rootView = LoginView()
     }
     
@@ -25,6 +26,10 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
         super.loadView()
         
         view = rootView
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 

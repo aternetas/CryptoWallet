@@ -11,9 +11,9 @@ import SnapKit
 final class LoginView: BaseView, BaseViewProtocol {
     private lazy var robotImageView: UIImageView = .init(image: .robot)
     
-    private lazy var usernameTextField: LoginTextField = .init(type: .username)
+    lazy var usernameTextField: LoginTextField = .init(type: .username)
     
-    private lazy var passwordTextField: LoginTextField = .init(type: .password)
+    lazy var passwordTextField: LoginTextField = .init(type: .password)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
