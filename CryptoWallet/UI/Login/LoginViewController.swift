@@ -48,5 +48,8 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
 }
 
 extension LoginViewController: LoginViewModelDelegate {
-    
+    func refreshTextFields() {
+        [rootView.usernameTextField,
+         rootView.passwordTextField].forEach { $0.text?.removeAll() }
+    }
 }
