@@ -28,8 +28,22 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
         view = rootView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        addButtonActions()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    private func addButtonActions() {
+        rootView.loginButton.addAction(UIAction { [weak self] _ in
+            guard let self else { return }
+            viewModel.login(username: rootView.usernameTextField.text,
+                                 password: rootView.passwordTextField.text)
+        }, for: .touchUpInside)
     }
 }
 

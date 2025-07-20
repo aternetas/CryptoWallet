@@ -15,6 +15,12 @@ final class LoginView: BaseView, BaseViewProtocol {
     
     lazy var passwordTextField: LoginTextField = .init(type: .password)
     
+    lazy var loginButton: UIButton = .init(text: "Login",
+                                           textColor: .white,
+                                           font: .semibold15,
+                                           backgroundColor: .black,
+                                           cornerRadius: 40)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,7 +40,8 @@ final class LoginView: BaseView, BaseViewProtocol {
     func initConstraints() {
         addSubviews([robotImageView,
                      usernameTextField,
-                     passwordTextField])
+                     passwordTextField,
+                     loginButton])
         
         robotImageView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(13)
@@ -43,15 +50,21 @@ final class LoginView: BaseView, BaseViewProtocol {
         }
         
         usernameTextField.snp.makeConstraints { make in
-            make.top.equalTo(robotImageView.snp.bottom).offset(174)
             make.height.equalTo(55)
             make.leading.trailing.equalToSuperview().inset(25)
+            make.bottom.equalTo(passwordTextField.snp.top).offset(-15)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(usernameTextField.snp.bottom).offset(15)
             make.height.equalTo(55)
             make.leading.trailing.equalToSuperview().inset(25)
+            make.bottom.equalTo(loginButton.snp.top).offset(-25)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.bottom.equalToSuperview().inset(133)
+            make.height.equalTo(55)
         }
     }
 }
