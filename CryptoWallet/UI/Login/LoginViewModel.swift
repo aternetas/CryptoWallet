@@ -17,6 +17,7 @@ final class LoginViewModel: BaseViewModel {
     
     func login(username: String?, password: String?) {
         if checkUserInput(username: username, password: password) {
+            UserDefaultsService.shared.setNewValue(value: true, key: .IS_AUTORIZED)
             delegate?.login()
         } else {
             showAlert(model: .init(title: "",

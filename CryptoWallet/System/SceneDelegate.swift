@@ -11,12 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let tabBarVC = TabBarController(nibName: nil, bundle: nil)
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
-        window.rootViewController = tabBarVC
+        window.rootViewController = UserDefaultsService.shared.isAutorized ? TabBarController(nibName: nil, bundle: nil) : LoginViewController()
         self.window = window
         window.makeKeyAndVisible()
     }

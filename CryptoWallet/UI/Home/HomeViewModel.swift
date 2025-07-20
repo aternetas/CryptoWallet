@@ -24,6 +24,7 @@ final class HomeViewModel: BaseViewModel {
     }
     
     func logOut() {
+        UserDefaultsService.shared.setNewValue(value: false, key: .IS_AUTORIZED)
         delegate?.logOut()
     }
 }
