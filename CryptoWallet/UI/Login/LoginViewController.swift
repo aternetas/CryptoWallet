@@ -48,6 +48,10 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
 }
 
 extension LoginViewController: LoginViewModelDelegate {
+    func login() {
+        setAsRootViewController(TabBarController(nibName: nil, bundle: nil))
+    }
+    
     func refreshTextFields() {
         [rootView.usernameTextField,
          rootView.passwordTextField].forEach { $0.text?.removeAll() }

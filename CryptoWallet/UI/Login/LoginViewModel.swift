@@ -8,6 +8,7 @@
 import Foundation
 
 protocol LoginViewModelDelegate: AnyObject {
+    func login()
     func refreshTextFields()
 }
 
@@ -16,7 +17,7 @@ final class LoginViewModel: BaseViewModel {
     
     func login(username: String?, password: String?) {
         if checkUserInput(username: username, password: password) {
-            
+            delegate?.login()
         } else {
             showAlert(model: .init(title: "",
                                    message: "Введены неправильно логин или пароль",
