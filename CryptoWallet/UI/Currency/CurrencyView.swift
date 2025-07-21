@@ -25,6 +25,10 @@ final class CurrencyView: BaseView, BaseViewProtocol {
     
     private lazy var percentChangeAndArrowView: UIView = .init()
     
+    private(set) lazy var customSegmentedControl: CustomSegmentedControl = .init(buttons: CurrencyForPeriodType
+        .allCases
+        .map { CustomSegmentedControlButton(button: $0)} )
+    
     private lazy var cardView: CardView = .init(backgroundColor: .white.withAlphaComponent(0.8))
     
     private lazy var marketStatisticsLabel: UILabel = .init(text: "Market Statistics",
@@ -75,6 +79,7 @@ final class CurrencyView: BaseView, BaseViewProtocol {
                      currencyLabel,
                      priceUSDLabel,
                      percentChangeAndArrowView,
+                     customSegmentedControl,
                      cardView])
         
         percentChangeAndArrowView.addSubviews([arrowImageView,
@@ -115,6 +120,12 @@ final class CurrencyView: BaseView, BaseViewProtocol {
             make.leading.equalToSuperview()
             make.trailing.equalTo(percentChangeUSDLabel.snp.leading).offset(-5)
             make.centerY.equalTo(percentChangeUSDLabel)
+        }
+        
+        customSegmentedControl.snp.makeConstraints { make in
+            make.top.equalTo(arrowImageView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.height.equalTo(56)
         }
         
         cardView.snp.makeConstraints { make in

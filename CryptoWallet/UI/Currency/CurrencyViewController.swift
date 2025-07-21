@@ -13,7 +13,9 @@ final class CurrencyViewController: BaseViewController<CurrencyViewModel, Curren
         
         viewModel = CurrencyViewModel()
         viewModel.delegate = self
+        
         rootView = CurrencyView()
+        rootView.customSegmentedControl.delegate = self
     }
     
     @available(*, unavailable)
@@ -48,6 +50,25 @@ extension CurrencyViewController: CurrencyViewModelDelegate {
     func updateData(vm: CurrencyVM) {
         DispatchQueue.main.async { [weak self] in
             self?.rootView.bind(vm: vm)
+        }
+    }
+}
+
+extension CurrencyViewController: CustomSegmentedControlDelegate {
+    func tapOnButton(index: Int) {
+        if let type = CurrencyForPeriodType.allCases.first(where: { $0.index == index }) {
+            switch type {
+            case .day:
+                return
+            case .week:
+                return
+            case .year:
+                return
+            case .all:
+                return
+            case .point:
+                return
+            }
         }
     }
 }
