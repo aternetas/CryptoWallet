@@ -23,6 +23,7 @@ final class CustomSegmentedControl: UIStackView {
     init(buttons: [CustomSegmentedControlButton]) {
         self.buttons = buttons
         super.init(frame: .zero)
+        
         setupView()
         bind()
     }
@@ -36,6 +37,8 @@ final class CustomSegmentedControl: UIStackView {
         buttons.forEach { button in
             button.layer.cornerRadius = 25.0
             button.layer.cornerCurve = .circular
+            button.layer.borderWidth = 4
+            button.layer.borderColor = UIColor(resource: .paleGray).cgColor
             
             button.setTitle(button.title, for: .normal)
             button.titleLabel?.font = .semibold14
