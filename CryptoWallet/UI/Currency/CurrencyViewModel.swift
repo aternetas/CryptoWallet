@@ -14,9 +14,11 @@ protocol CurrencyViewModelDelegate: AnyObject {
 final class CurrencyViewModel: BaseViewModel {
     weak var delegate: CurrencyViewModelDelegate?
     
-    private(set) var currencyId: String = ""
-    
     func setCurrency(_ id: String) {
-        currencyId = id
+        if let currencyVM = CurrencyService.shared.currencies
+            .first(where: { $0.id == id })
+            .map({ CurrencyVM(model: $0) }) {
+            delegate?.updateData(vm: currencyVM)
+        }
     }
 }

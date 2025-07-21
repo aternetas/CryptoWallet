@@ -34,7 +34,7 @@ struct CurrencyVM {
         nameWithSymbol = "\(model.name) (\(model.symbol))"
         priceUSD = model.priceUSD.currencyFormatted
         percentChangeUSDLast24Hours = model.percentChangeUSDLast24Hours
-        marketCapitalization = "$\(model.currentCapitalizationUSD)"
-        circulatingSupply = "\(model.currentSupply) \(model.symbol)"
+        marketCapitalization = model.currentCapitalizationUSD.capitalizationFormatted
+        circulatingSupply = "\(model.currentSupply.supplyFormatted) \(model.symbol)"
     }
 }

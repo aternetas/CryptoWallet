@@ -7,19 +7,41 @@
 
 import Foundation
 
+fileprivate var currencyFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = Locale(identifier: "en_US")
+    formatter.maximumFractionDigits = 2
+    formatter.minimumFractionDigits = 2
+    return formatter
+}()
+
+fileprivate var capitalizationFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = Locale(identifier: "en_US")
+    formatter.maximumFractionDigits = 0
+    return formatter
+}()
+
+fileprivate var supplyFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 0
+    return formatter
+}()
+
 extension Double {
     var currencyFormatted: String {
-        if self == 0 {
-            return "0"
-        }
-        
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        
-        return formatter.string(from: NSNumber(value: self)) ?? twoDigitsAfterComma
+        currencyFormatter.string(from: NSNumber(value: self)) ?? twoDigitsAfterComma
+    }
+    
+    var capitalizationFormatted: String {
+        capitalizationFormatter.string(from: NSNumber(value: self)) ?? "\(Int(self))"
+    }
+    
+    var supplyFormatted: String {
+        supplyFormatter.string(from: NSNumber(value: self)) ?? "\(Int(self))"
     }
     
     var oneDigitAfterComma: String {
