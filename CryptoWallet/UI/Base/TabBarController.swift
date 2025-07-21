@@ -22,29 +22,29 @@ final class TabBarController: UITabBarController {
     
     private func setupTabs() {
         let homeVC = HomeViewController()
-        homeVC.tabBarItem = UITabBarItem(title: nil, image: .home, tag: 0)
-       
+        homeVC.tabBarItem = UITabBarItem(title: "", image: .home, tag: 0)
+
         let navigationVC = UINavigationController(rootViewController: homeVC)
         navigationVC.isNavigationBarHidden = true
         
         let currenciesVC = AnyVC()
-        currenciesVC.tabBarItem = UITabBarItem(title: nil, image: .currencies, tag: 1)
+        currenciesVC.tabBarItem = UITabBarItem(title: "", image: .currencies, tag: 1)
         
         let walletVC = AnyVC()
-        walletVC.tabBarItem = UITabBarItem(title: nil, image: .wallet, tag: 2)
+        walletVC.tabBarItem = UITabBarItem(title: "", image: .wallet, tag: 2)
         
         let historyVC = AnyVC()
-        historyVC.tabBarItem = UITabBarItem(title: nil, image: .history, tag: 3)
+        historyVC.tabBarItem = UITabBarItem(title: "", image: .history, tag: 3)
         
         let profileVC = AnyVC()
-        profileVC.tabBarItem = UITabBarItem(title: nil, image: .profile, tag: 4)
+        profileVC.tabBarItem = UITabBarItem(title: "", image: .profile, tag: 4)
         
         viewControllers = [navigationVC, currenciesVC, walletVC, historyVC, profileVC]
     }
     
     private func setupAppearance() {
-//        tabBar.tintColor = .white
-//        tabBar.isTranslucent = false
+        tabBar.tintColor = .white
+        tabBar.isTranslucent = false
         
         let appearance = UITabBarAppearance()
         appearance.stackedLayoutAppearance.normal.iconColor = .middleGray
