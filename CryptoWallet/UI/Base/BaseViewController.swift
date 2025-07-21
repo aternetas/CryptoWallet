@@ -23,11 +23,21 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.navigationManager = self
         viewModel.alertManager = self
     }
     
     func setAsRootViewController(_ viewController: UIViewController) {
         UIApplication.shared.firstKeyWindow?.rootViewController = viewController
+    }
+}
+
+extension BaseViewController: NavigationManagerProtocol {
+    func openScreen(screen: ScreenType) {
+        switch screen {
+        case .currency(let id):
+            return
+        }
     }
 }
 
