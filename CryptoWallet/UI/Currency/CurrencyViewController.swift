@@ -39,6 +39,10 @@ final class CurrencyViewController: BaseViewController<CurrencyViewModel, Curren
         rootView.backButton.addAction(UIAction { [weak self] _ in
             self?.tapOnBackButton()
         }, for: .touchUpInside)
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeRight))
+        swipeRightGesture.direction = .right
+        view.addGestureRecognizer(swipeRightGesture)
     }
     
     private func tapOnBackButton() {

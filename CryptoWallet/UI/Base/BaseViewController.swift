@@ -34,6 +34,10 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
     func popViewController() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func handleSwipeRight() {
+        popViewController()
+    }
 }
 
 extension BaseViewController: NavigationManagerProtocol {
