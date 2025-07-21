@@ -8,5 +8,9 @@
 import Foundation
 
 final class CurrencyViewModel: BaseViewModel {
+    private(set) var currencyId: String = ""
     
+    func setCurrency(_ id: String) {
+        currencyId = id
+    }
 }

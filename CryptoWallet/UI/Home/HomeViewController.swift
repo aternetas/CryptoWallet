@@ -98,6 +98,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        viewModel.selectCurrency(viewModel.currenciesVM[indexPath.item].id)
     }
 }

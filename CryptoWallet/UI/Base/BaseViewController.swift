@@ -34,10 +34,16 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
 
 extension BaseViewController: NavigationManagerProtocol {
     func openScreen(screen: ScreenType) {
+        let viewController: UIViewController
+        
         switch screen {
         case .currency(let id):
-            return
+            let vc = CurrencyViewController()
+            vc.viewModel.setCurrency(id)
+            viewController = vc
         }
+        
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

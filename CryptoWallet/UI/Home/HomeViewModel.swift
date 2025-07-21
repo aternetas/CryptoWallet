@@ -47,6 +47,10 @@ final class HomeViewModel: BaseViewModel {
         delegate?.changeMenuVisibility()
     }
     
+    func selectCurrency(_ id: String) {
+        navigationManager?.openScreen(screen: .currency(id))
+    }
+    
     func logOut() {
         UserDefaultsService.shared.setNewValue(value: false, key: .IS_AUTORIZED)
         delegate?.logOut()
