@@ -77,8 +77,8 @@ final class HomeView: BaseView, BaseViewProtocol {
                               trendingCurrenciesTableView])
         
         homeLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(10)
             make.leading.equalToSuperview().offset(25)
+            make.centerY.equalTo(menuButton)
         }
         
         affiliateProgramLabel.snp.makeConstraints { make in
@@ -93,8 +93,8 @@ final class HomeView: BaseView, BaseViewProtocol {
         }
         
         menuButton.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(10)
             make.trailing.equalToSuperview().inset(25)
-            make.centerY.equalTo(homeLabel.snp.centerY)
             make.height.width.equalTo(48)
         }
         
@@ -121,7 +121,7 @@ final class HomeView: BaseView, BaseViewProtocol {
         
         sortButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(25)
-            make.centerY.equalTo(trendingLabel.snp.centerY)
+            make.centerY.equalTo(trendingLabel)
             make.height.width.equalTo(24)
         }
         
