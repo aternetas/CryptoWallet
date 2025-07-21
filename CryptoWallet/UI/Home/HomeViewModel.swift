@@ -18,11 +18,12 @@ final class HomeViewModel: BaseViewModel {
     
     private(set) var currenciesVM: [Currency] = []
     
-    func getData() {
+    func getData(isAscending: Bool) {
         CurrencyService.shared.getData { [weak self] result in
             switch result {
             case .success(let currencies):
                 self?.currenciesVM = currencies
+                self?.sortCurrencies(isAscending: isAscending)
                 self?.delegate?.updateData()
             case .failure(let failure):
                 //alert
@@ -31,8 +32,15 @@ final class HomeViewModel: BaseViewModel {
         }
     }
     
-    func refreshData() {
-        
+    func refreshData(isAscending: Bool) {
+        currenciesVM.removeAll()
+        delegate?.updateData()
+        getData(isAscending: isAscending)
+    }
+    
+    func resort(isAscending: Bool) {
+        sortCurrencies(isAscending: isAscending)
+        delegate?.updateData()
     }
     
     func changeMenuVisibility() {
@@ -42,5 +50,9 @@ final class HomeViewModel: BaseViewModel {
     func logOut() {
         UserDefaultsService.shared.setNewValue(value: false, key: .IS_AUTORIZED)
         delegate?.logOut()
+    }
+    
+    private func sortCurrencies(isAscending: Bool) {
+        currenciesVM.sort { isAscending ? $0.priceUSD < $1.priceUSD : $0.priceUSD > $1.priceUSD }
     }
 }

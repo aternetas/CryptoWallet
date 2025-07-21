@@ -57,4 +57,13 @@ extension UIButton {
         
         self.configuration = configuration
     }
+    
+    func configureWithImage(_ image: UIImage) {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .clear
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
 }

@@ -36,7 +36,7 @@ final class HomeView: BaseView, BaseViewProtocol {
                                                     font: .medium20,
                                                     textColor: .black)
     
-    private lazy var sortButton: UIButton = .init(image: .order)
+    private(set) lazy var sortButton: SortButton = .init(isAscending: false)
     
     private(set) lazy var trendingCurrenciesTableView: UITableView = {
         let tableView = UITableView()

@@ -35,7 +35,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.getData()
+        viewModel.getData(isAscending: rootView.sortButton.isAscending)
         addButtonActions()
     }
     
@@ -43,10 +43,19 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         rootView.menuButton.addAction(UIAction { [weak self] _ in
             self?.tapOnMenuButton()
         }, for: .touchUpInside)
+        
+        rootView.sortButton.addAction(UIAction { [weak self] _ in
+            self?.tapOnSortButton()
+        }, for: .touchUpInside)
     }
     
     private func tapOnMenuButton() {
         viewModel.changeMenuVisibility()
+    }
+    
+    private func tapOnSortButton() {
+        rootView.sortButton.toggle()
+        viewModel.resort(isAscending: rootView.sortButton.isAscending)
     }
 }
 
@@ -70,7 +79,7 @@ extension HomeViewController: MenuViewDelegateProtocol {
     func tapOnMenuCell(_ type: MenuType) {
         switch type {
         case .refresh:
-            viewModel.refreshData()
+            viewModel.refreshData(isAscending: rootView.sortButton.isAscending)
         case .exit:
             viewModel.logOut()
         }
