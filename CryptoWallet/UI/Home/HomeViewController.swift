@@ -35,6 +35,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.getData()
         addButtonActions()
     }
     
@@ -50,6 +51,12 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
 }
 
 extension HomeViewController: HomeViewModelDelegate {
+    func updateData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.rootView.trendingCurrenciesTableView.reloadData()
+        }
+    }
+    
     func changeMenuVisibility() {
         rootView.menuView.isHidden = !rootView.menuView.isHidden
     }
@@ -72,15 +79,12 @@ extension HomeViewController: MenuViewDelegateProtocol {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        viewModel.currenciesVM.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TrendingCurrencyCell = tableView.dequeueReusableCell(withIdentifier: TrendingCurrencyCell.identifier, for: indexPath) as! TrendingCurrencyCell
-        
-        let mockVM = TrendingCurrencyVM(id: "", name: "Bitcoin", symbol: "BTC", priceUSD: 13221.55, media: .btc, percentChangeUSDLast24Hours: 2.2, delegate: nil)
-        cell.bind(vm: mockVM)
-        
+        cell.bind(vm: TrendingCurrencyVM(model: viewModel.currenciesVM[indexPath.item]))
         return cell
     }
     

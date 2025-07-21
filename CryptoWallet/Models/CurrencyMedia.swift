@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum CurrencyMedia: String {
+enum CurrencyMedia: String, CaseIterable {
     case btc = "Bitcoin",
          eth = "Ethereum",
          tron = "TRON",
@@ -15,7 +15,8 @@ enum CurrencyMedia: String {
          tether = "Tether",
          stellar = "Stellar",
          cardano = "Cardano",
-         xrp = "XRP"
+         xrp = "XRP",
+         other = "other"
     
     var icon: UIImage {
         switch self {
@@ -35,6 +36,8 @@ enum CurrencyMedia: String {
             UIImage(resource: .cardano)
         case .xrp:
             UIImage(resource: .XRP)
+        case .other:
+            UIImage(systemName: "questionmark.app") ?? UIImage()
         }
     }
     
@@ -56,6 +59,8 @@ enum CurrencyMedia: String {
             UIColor(resource: .cardanoBackground)
         case .xrp:
             UIColor(resource: .xrpBackground)
+        case .other:
+            UIColor(resource: .tronBackground)
         }
     }
 }
