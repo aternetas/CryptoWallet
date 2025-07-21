@@ -9,8 +9,12 @@ import Foundation
 
 struct Metrics: Codable {
     let marketData: MarketData
+    let marketCapitalization: MarketCapitalization
+    let circulatingSupply: CirculatingSupply
     
     enum CodingKeys: String, CodingKey {
-        case marketData = "market_data"
+        case marketData = "market_data",
+             marketCapitalization = "marketcap",
+             circulatingSupply = "supply"
     }
 }
