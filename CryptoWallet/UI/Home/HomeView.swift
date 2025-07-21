@@ -30,7 +30,7 @@ final class HomeView: BaseView, BaseViewProtocol {
     
     private lazy var stackImageView: UIImageView = .init(image: .stack)
     
-    private lazy var cardView: CardView = .init()
+    private lazy var cardView: CardView = .init(backgroundColor: .pearl)
     
     private lazy var trendingLabel: UILabel = .init(text: "Trending",
                                                     font: .medium20,

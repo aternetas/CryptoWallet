@@ -25,6 +25,26 @@ final class CurrencyView: BaseView, BaseViewProtocol {
     
     private lazy var percentChangeAndArrowView: UIView = .init()
     
+    private lazy var cardView: CardView = .init(backgroundColor: .white.withAlphaComponent(0.8))
+    
+    private lazy var marketStatisticsLabel: UILabel = .init(text: "Market Statistics",
+                                                            font: .medium20,
+                                                            textColor: .black)
+    
+    private lazy var marketCapitalizationLabel: UILabel = .init(text: "Market capitalization",
+                                                             font: .medium14,
+                                                             textColor: .darkGray)
+    
+    private lazy var marketCapitalizationValueLabel: UILabel = .init(font: .semibold14,
+                                                                     textColor: .black)
+    
+    private lazy var circulatingSupplyLabel: UILabel = .init(text: "Circulating Supply",
+                                                             font: .medium14,
+                                                             textColor: .darkGray)
+    
+    private lazy var circulatingSupplyValueLabel: UILabel = .init(font: .semibold14,
+                                                                     textColor: .black)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,6 +62,8 @@ final class CurrencyView: BaseView, BaseViewProtocol {
         priceUSDLabel.text = vm.priceUSD
         arrowImageView.image = vm.percentChangeUSDLast24Hours > 0 ? .arrowUp : .arrowDown
         percentChangeUSDLabel.text = vm.percentChangeUSDLast24Hours.oneDigitAfterComma
+        marketCapitalizationValueLabel.text = vm.marketCapitalization
+        circulatingSupplyValueLabel.text = vm.circulatingSupply
     }
     
     func setupView() {
@@ -49,13 +71,20 @@ final class CurrencyView: BaseView, BaseViewProtocol {
     }
     
     func initConstraints() {
-        percentChangeAndArrowView.addSubviews([arrowImageView,
-                                               percentChangeUSDLabel])
-        
         addSubviews([backButton,
                      currencyLabel,
                      priceUSDLabel,
-                     percentChangeAndArrowView])
+                     percentChangeAndArrowView,
+                     cardView])
+        
+        percentChangeAndArrowView.addSubviews([arrowImageView,
+                                               percentChangeUSDLabel])
+        
+        cardView.addSubviews([marketStatisticsLabel,
+                              marketCapitalizationLabel,
+                              marketCapitalizationValueLabel,
+                              circulatingSupplyLabel,
+                              circulatingSupplyValueLabel])
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(10)
@@ -86,6 +115,35 @@ final class CurrencyView: BaseView, BaseViewProtocol {
             make.leading.equalToSuperview()
             make.trailing.equalTo(percentChangeUSDLabel.snp.leading).offset(-5)
             make.centerY.equalTo(percentChangeUSDLabel)
+        }
+        
+        cardView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        marketStatisticsLabel.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(25)
+            make.bottom.equalTo(marketCapitalizationLabel.snp.top).offset(-15)
+        }
+        
+        marketCapitalizationLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.bottom.equalTo(circulatingSupplyLabel.snp.top).offset(-15)
+        }
+        
+        marketCapitalizationValueLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-25)
+            make.centerY.equalTo(marketCapitalizationLabel)
+        }
+        
+        circulatingSupplyLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(25)
+            make.bottom.equalToSuperview().inset(115)
+        }
+        
+        circulatingSupplyValueLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-25)
+            make.centerY.equalTo(circulatingSupplyLabel)
         }
     }
 }
