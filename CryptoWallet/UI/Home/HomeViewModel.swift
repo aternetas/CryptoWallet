@@ -57,6 +57,8 @@ final class HomeViewModel: BaseViewModel {
     }
     
     private func sortCurrencies(isAscending: Bool) {
-        currenciesVM.sort { isAscending ? $0.priceUSD < $1.priceUSD : $0.priceUSD > $1.priceUSD }
+        currenciesVM.sort { isAscending ?
+            $0.percentChangeUSDLast24Hours < $1.percentChangeUSDLast24Hours :
+            $0.percentChangeUSDLast24Hours > $1.percentChangeUSDLast24Hours }
     }
 }
