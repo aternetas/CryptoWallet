@@ -23,10 +23,10 @@ final class HomeView: BaseView, BaseViewProtocol {
                                                        backgroundColor: .white,
                                                        cornerRadius: 40.0)
     
-    lazy var menuButton: UIButton = .init(image: .dots,
+    private(set) lazy var menuButton: UIButton = .init(image: .dots,
                                                   backgroundColor: .white)
     
-    lazy var menuView: MenuView = .init()
+    private(set) lazy var menuView: MenuView = .init()
     
     private lazy var stackImageView: UIImageView = .init(image: .stack)
     
@@ -38,7 +38,7 @@ final class HomeView: BaseView, BaseViewProtocol {
     
     private lazy var sortButton: UIButton = .init(image: .order)
     
-    lazy var trendingCurrenciesTableView: UITableView = {
+    private(set) lazy var trendingCurrenciesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TrendingCurrencyCell.self, forCellReuseIdentifier: TrendingCurrencyCell.identifier)
         tableView.separatorStyle = .none

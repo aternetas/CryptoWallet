@@ -11,11 +11,11 @@ import SnapKit
 final class LoginView: BaseView, BaseViewProtocol {
     private lazy var robotImageView: UIImageView = .init(image: .robot)
     
-    lazy var usernameTextField: LoginTextField = .init(type: .username)
+    private(set) lazy var usernameTextField: LoginTextField = .init(type: .username)
     
-    lazy var passwordTextField: LoginTextField = .init(type: .password)
+    private(set) lazy var passwordTextField: LoginTextField = .init(type: .password)
     
-    lazy var loginButton: UIButton = .init(text: "Login",
+    private(set) lazy var loginButton: UIButton = .init(text: "Login",
                                            textColor: .white,
                                            font: .semibold15,
                                            backgroundColor: .black,
