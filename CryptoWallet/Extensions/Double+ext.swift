@@ -21,7 +21,15 @@ extension Double {
         return formatter.string(from: .init(value: Double(Int(self * 100)) / 100.0)) ?? String(format: "%.2f", self)
     }
     
-    var formatted2: String {
+    var oneDigitAfterComma: String {
+        if self == 0 {
+            return "0"
+        }
+        
+        return String(format: "%.1f", self)
+    }
+    
+    var twoDigitsAfterComma: String {
         if self == 0 {
             return "0"
         }

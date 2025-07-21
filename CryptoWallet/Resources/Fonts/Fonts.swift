@@ -13,6 +13,7 @@ extension UIFont {
     static var medium14 = UIFont(type: .medium, size: 14)
     static var medium18 = UIFont(type: .medium, size: 18)
     static var medium20 = UIFont(type: .medium, size: 20)
+    static var medium28 = UIFont(type: .medium, size: 28)
     
     static var semibold14 = UIFont(type: .semibold, size: 14)
     static var semibold15 = UIFont(type: .semibold, size: 15)

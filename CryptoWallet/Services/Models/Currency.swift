@@ -17,7 +17,14 @@ struct Currency {
     let currentCapitalizationUSD: Double
     let currentSupply: Double
     
-    init(id: String, name: String, symbol: String, media: CurrencyMedia, priceUSD: Double, percentChangeUSDLast24Hours: Double, currentCapitalizationUSD: Double, currentSupply: Double) {
+    init(id: String,
+         name: String,
+         symbol: String,
+         media: CurrencyMedia,
+         priceUSD: Double,
+         percentChangeUSDLast24Hours: Double,
+         currentCapitalizationUSD: Double,
+         currentSupply: Double) {
         self.id = id
         self.name = name
         self.symbol = symbol

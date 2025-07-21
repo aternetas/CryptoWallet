@@ -30,6 +30,10 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
     func setAsRootViewController(_ viewController: UIViewController) {
         UIApplication.shared.firstKeyWindow?.rootViewController = viewController
     }
+    
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension BaseViewController: NavigationManagerProtocol {
