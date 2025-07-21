@@ -8,17 +8,18 @@
 import Foundation
 
 extension Double {
-    var formatted: String {
+    var currencyFormatted: String {
         if self == 0 {
             return "0"
         }
         
         let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "en_US")
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         
-        return formatter.string(from: .init(value: Double(Int(self * 100)) / 100.0)) ?? String(format: "%.2f", self)
+        return formatter.string(from: NSNumber(value: self)) ?? twoDigitsAfterComma
     }
     
     var oneDigitAfterComma: String {

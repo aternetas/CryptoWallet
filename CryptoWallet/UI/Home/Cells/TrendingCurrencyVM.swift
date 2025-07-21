@@ -24,7 +24,7 @@ final class TrendingCurrencyVM {
         self.id = id
         self.name = name
         self.symbol = symbol
-        self.priceUSD = "\(priceUSD.formatted)"
+        self.priceUSD = priceUSD.currencyFormatted
         self.media = media
         self.percentChangeUSDLast24Hours = percentChangeUSDLast24Hours
     }

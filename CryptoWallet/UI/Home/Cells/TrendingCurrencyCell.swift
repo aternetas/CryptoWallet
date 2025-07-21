@@ -50,8 +50,8 @@ final class TrendingCurrencyCell: UITableViewCell {
         iconBackgroundView.backgroundColor = vm.media.backgroundColor
         nameLabel.text = vm.name
         symbolLabel.text = vm.symbol
-        priceUSDLabel.text = "$\(vm.priceUSD)"
-        percentChangeUSDLabel.text = "\(vm.percentChangeUSDLast24Hours.twoDigitsAfterComma)"
+        priceUSDLabel.text = vm.priceUSD
+        percentChangeUSDLabel.text = vm.percentChangeUSDLast24Hours.twoDigitsAfterComma
         arrowImageView.image = vm.percentChangeUSDLast24Hours > 0 ? .arrowUp : .arrowDown
     }
     

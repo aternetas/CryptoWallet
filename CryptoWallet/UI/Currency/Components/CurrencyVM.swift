@@ -32,7 +32,7 @@ struct CurrencyVM {
     init(model: Currency) {
         id = model.id
         nameWithSymbol = "\(model.name) (\(model.symbol))"
-        priceUSD = "$\(model.priceUSD.formatted)"
+        priceUSD = model.priceUSD.currencyFormatted
         percentChangeUSDLast24Hours = model.percentChangeUSDLast24Hours
         marketCapitalization = "$\(model.currentCapitalizationUSD)"
         circulatingSupply = "\(model.currentSupply) \(model.symbol)"
