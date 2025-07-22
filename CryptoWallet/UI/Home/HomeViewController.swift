@@ -55,6 +55,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     }
     
     private func tapOnSortButton() {
+        rootView.menuView.isHidden = true
         rootView.sortButton.toggle()
         viewModel.resort(isAscending: rootView.sortButton.isAscending)
     }
@@ -89,6 +90,7 @@ extension HomeViewController: MenuViewDelegateProtocol {
         case .refresh:
             viewModel.refreshData(isAscending: rootView.sortButton.isAscending)
             startSpinner()
+            changeMenuVisibility()
         case .exit:
             viewModel.logOut()
         }
@@ -107,6 +109,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        changeMenuVisibility()
         viewModel.selectCurrency(viewModel.currenciesVM[indexPath.item].id)
     }
 }
