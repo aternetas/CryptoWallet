@@ -57,7 +57,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     private func tapOnSortButton() {
         rootView.menuView.isHidden = true
         rootView.sortButton.toggle()
-        viewModel.resort(isAscending: rootView.sortButton.isAscending)
+        viewModel.sort(isAscending: rootView.sortButton.isAscending)
     }
     
     private func startSpinner() {
@@ -68,6 +68,10 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
 }
 
 extension HomeViewController: HomeViewModelDelegate {
+    func getData() {
+        viewModel.sort(isAscending: rootView.sortButton.isAscending)
+    }
+    
     func updateData() {
         DispatchQueue.main.async { [weak self] in
             self?.rootView.spinner.stopAnimating()

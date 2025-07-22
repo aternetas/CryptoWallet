@@ -8,6 +8,7 @@
 import Foundation
 
 protocol HomeViewModelDelegate: AnyObject {
+    func getData()
     func changeMenuVisibility()
     func updateData()
     func logOut()
@@ -24,8 +25,7 @@ final class HomeViewModel: BaseViewModel {
                 switch result {
                 case .success(let currencies):
                     self?.currenciesVM = currencies
-                    self?.sortCurrencies(isAscending: isAscending)
-                    self?.delegate?.updateData()
+                    self?.delegate?.getData()
                 case .failure(_):
                     //alert
                     return
@@ -40,7 +40,7 @@ final class HomeViewModel: BaseViewModel {
         getData(isAscending: isAscending)
     }
     
-    func resort(isAscending: Bool) {
+    func sort(isAscending: Bool) {
         sortCurrencies(isAscending: isAscending)
         delegate?.updateData()
     }
