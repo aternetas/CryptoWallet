@@ -149,7 +149,7 @@ final class CurrencyView: BaseView, BaseViewProtocol {
         
         circulatingSupplyLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(25)
-            make.bottom.equalToSuperview().inset(115)
+            make.bottom.equalToSuperview().inset(33)
         }
         
         circulatingSupplyValueLabel.snp.makeConstraints { make in

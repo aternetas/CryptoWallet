@@ -28,6 +28,8 @@ fileprivate var supplyFormatter: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.numberStyle = .decimal
     formatter.maximumFractionDigits = 0
+    formatter.groupingSeparator = "."
+    formatter.usesGroupingSeparator = true
     return formatter
 }()
 
