@@ -35,6 +35,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startSpinner()
         viewModel.getData(isAscending: rootView.sortButton.isAscending)
         addButtonActions()
     }
@@ -57,11 +58,18 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         rootView.sortButton.toggle()
         viewModel.resort(isAscending: rootView.sortButton.isAscending)
     }
+    
+    private func startSpinner() {
+        DispatchQueue.main.async { [weak self] in
+            self?.rootView.spinner.startAnimating()
+        }
+    }
 }
 
 extension HomeViewController: HomeViewModelDelegate {
     func updateData() {
         DispatchQueue.main.async { [weak self] in
+            self?.rootView.spinner.stopAnimating()
             self?.rootView.trendingCurrenciesTableView.reloadData()
         }
     }
@@ -80,6 +88,7 @@ extension HomeViewController: MenuViewDelegateProtocol {
         switch type {
         case .refresh:
             viewModel.refreshData(isAscending: rootView.sortButton.isAscending)
+            startSpinner()
         case .exit:
             viewModel.logOut()
         }

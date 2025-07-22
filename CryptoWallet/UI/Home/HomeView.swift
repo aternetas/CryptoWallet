@@ -46,6 +46,8 @@ final class HomeView: BaseView, BaseViewProtocol {
         return tableView
     }()
     
+    private(set) lazy var spinner: UIActivityIndicatorView = .init(style: .large)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -74,7 +76,8 @@ final class HomeView: BaseView, BaseViewProtocol {
         
         cardView.addSubviews([trendingLabel,
                               sortButton,
-                              trendingCurrenciesTableView])
+                              trendingCurrenciesTableView,
+                              spinner])
         
         homeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(25)
@@ -128,6 +131,11 @@ final class HomeView: BaseView, BaseViewProtocol {
         trendingCurrenciesTableView.snp.makeConstraints { make in
             make.top.equalTo(trendingLabel.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        spinner.snp.makeConstraints { make in
+            make.top.equalTo(trendingLabel.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
         }
     }
 }

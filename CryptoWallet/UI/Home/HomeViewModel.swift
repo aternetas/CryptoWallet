@@ -19,15 +19,17 @@ final class HomeViewModel: BaseViewModel {
     private(set) var currenciesVM: [Currency] = []
     
     func getData(isAscending: Bool) {
-        CurrencyService.shared.getData { [weak self] result in
-            switch result {
-            case .success(let currencies):
-                self?.currenciesVM = currencies
-                self?.sortCurrencies(isAscending: isAscending)
-                self?.delegate?.updateData()
-            case .failure(let failure):
-                //alert
-                return
+        DispatchQueue.global(qos: .userInitiated).async {
+            CurrencyService.shared.getData { [weak self] result in
+                switch result {
+                case .success(let currencies):
+                    self?.currenciesVM = currencies
+                    self?.sortCurrencies(isAscending: isAscending)
+                    self?.delegate?.updateData()
+                case .failure(_):
+                    //alert
+                    return
+                }
             }
         }
     }
