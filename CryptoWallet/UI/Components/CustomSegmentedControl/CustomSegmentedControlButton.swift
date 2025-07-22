@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomSegmentedControlButton: UIButton, CustomSegmentedControlButtonProtocol {
+final class CustomSegmentedControlButton: UIButton {
     let index: Int
     let title: String
     

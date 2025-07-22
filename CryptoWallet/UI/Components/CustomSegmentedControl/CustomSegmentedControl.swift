@@ -34,7 +34,7 @@ final class CustomSegmentedControl: UIStackView {
     }
     
     private func bind() {
-        buttons.forEach { button in
+        buttons.enumerated().forEach { index, button in
             button.layer.cornerRadius = 25.0
             button.layer.cornerCurve = .circular
             button.layer.borderWidth = 4
@@ -47,14 +47,15 @@ final class CustomSegmentedControl: UIStackView {
             button.tag = button.index
             
             button.addAction(UIAction { [weak self] _ in
-                self?.tapOnButton(button: button)
+                guard let self else { return }
+                tapOnButton(button: buttons[index])
             }, for: .touchUpInside)
             
             addArrangedSubview(button)
         }
     }
     
-    private func tapOnButton(button: UIButton) {
+    private func tapOnButton(button: CustomSegmentedControlButton) {
         delegate?.tapOnButton(index: button.tag)
         updateUI(selectedIndex: button.tag)
     }
