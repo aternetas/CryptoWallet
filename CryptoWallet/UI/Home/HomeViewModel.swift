@@ -55,8 +55,8 @@ final class HomeViewModel: BaseViewModel {
         delegate?.changeMenuVisibility()
     }
     
-    func selectCurrency(_ id: String) {
-        navigationManager?.openScreen(screen: .currency(id))
+    func selectCurrency(_ name: String) {
+        navigationManager?.openScreen(screen: .currency(name))
     }
     
     func logOut() {

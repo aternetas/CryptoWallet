@@ -47,10 +47,11 @@ final class CurrencyService: CurrencyServiceProtocol {
     }
     
     private func getData(completionHandler: @escaping (Result<[Currency], Error>) -> Void) {
-        repository.getData { response in
+        repository.getData { [weak self] response in
+            guard let self else { return }
             switch response {
             case .success(let response):
-                let currencies = response.data
+                currencies = response.data
                     .map { Currency(dto: $0) }
                 
                 completionHandler(.success(currencies))

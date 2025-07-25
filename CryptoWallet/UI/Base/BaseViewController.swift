@@ -66,9 +66,9 @@ extension BaseViewController: NavigationManagerProtocol {
         let viewController: UIViewController
         
         switch screen {
-        case .currency(let id):
+        case .currency(let name):
             let vc = CurrencyViewController()
-            vc.viewModel.setCurrency(id)
+            vc.viewModel.setCurrency(name)
             viewController = vc
         }
         
