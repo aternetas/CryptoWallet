@@ -19,9 +19,9 @@ final class HomeViewModel: BaseViewModel {
     
     private(set) var currenciesVM: [Currency] = []
     
-    func getData(isAscending: Bool) {
+    func getData() {
         DispatchQueue.global(qos: .userInitiated).async {
-            CurrencyService.shared.getData { [weak self] result in
+            CurrencyService.shared.getCurrencies { [weak self] result in
                 switch result {
                 case .success(let currencies):
                     self?.currenciesVM = currencies
@@ -37,7 +37,7 @@ final class HomeViewModel: BaseViewModel {
     func refreshData(isAscending: Bool) {
         currenciesVM.removeAll()
         delegate?.updateData()
-        getData(isAscending: isAscending)
+        getData()
     }
     
     func sort(isAscending: Bool) {

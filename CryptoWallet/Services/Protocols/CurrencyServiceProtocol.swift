@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CurrencyServiceProtocol {
-    func getData(completionHandler: @escaping (Result<[Currency], Error>) -> Void)
+    func getCurrencies(names: Set<String>, completionHandler: @escaping (Result<[Currency], Error>) -> Void)
+    func getCurrency(name: String, completionHandler: @escaping (Result<Currency, Error>) -> Void)
 }

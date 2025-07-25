@@ -36,7 +36,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
         super.viewDidLoad()
         
         startSpinner()
-        viewModel.getData(isAscending: rootView.sortButton.isAscending)
+        viewModel.getData()
         addButtonActions()
     }
     
