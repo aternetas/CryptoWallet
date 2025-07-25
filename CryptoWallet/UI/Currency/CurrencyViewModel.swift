@@ -33,8 +33,11 @@ final class CurrencyViewModel: BaseViewModel {
             case .success(let currency):
                 self?.delegate?.updateData(vm: .init(model: currency))
             case .failure(let error):
-                //alert
-                return
+                self?.showAlert(model: .init(title: "",
+                                             message: "Ошибка: \(error.localizedDescription)",
+                                             actions: [.init(title: "Понятно",
+                                                             style: .default,
+                                                             action: { })]))
             }
         }
     }

@@ -26,9 +26,12 @@ final class HomeViewModel: BaseViewModel {
                 case .success(let currencies):
                     self?.currenciesVM = currencies
                     self?.delegate?.getData()
-                case .failure(_):
-                    //alert
-                    return
+                case .failure(let error):
+                    self?.showAlert(model: .init(title: "",
+                                                 message: "Ошибка: \(error.localizedDescription)",
+                                                 actions: [.init(title: "Понятно",
+                                                                 style: .default,
+                                                                 action: { })]))
                 }
             }
         }
