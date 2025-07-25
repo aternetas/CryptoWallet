@@ -57,7 +57,7 @@ final class HomeViewController: BaseViewController<HomeViewModel, HomeView> {
     private func tapOnSortButton() {
         rootView.menuView.isHidden = true
         rootView.sortButton.toggle()
-        viewModel.sort(isAscending: rootView.sortButton.isAscending)
+        viewModel.tapOnSortButton()
     }
     
     private func startSpinner() {

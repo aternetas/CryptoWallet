@@ -40,6 +40,12 @@ final class HomeViewModel: BaseViewModel {
         getData()
     }
     
+    func tapOnSortButton() {
+        if !currenciesVM.isEmpty {
+            delegate?.getData()
+        }
+    }
+    
     func sort(isAscending: Bool) {
         sortCurrencies(isAscending: isAscending)
         delegate?.updateData()
