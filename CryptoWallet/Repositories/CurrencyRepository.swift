@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CurrencyRepository {
+final class CurrencyRepository: CurrencyRepositoryProtocol {
     private let url: URL = URL(string: "https://data.messari.io/api/v1/assets")!
     
     func getData(completionHandler: @escaping (Result<CurrenciesResponse, Error>) -> Void) {

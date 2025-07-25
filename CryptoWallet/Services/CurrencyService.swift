@@ -7,14 +7,14 @@
 
 import Foundation
 
-final class CurrencyService {
+final class CurrencyService: CurrencyServiceProtocol {
     static let shared = CurrencyService(repository: CurrencyRepository())
     
-    private let repository: CurrencyRepository
+    private let repository: CurrencyRepositoryProtocol
     
     private(set) var currencies: [Currency] = []
     
-    init(repository: CurrencyRepository) {
+    init(repository: CurrencyRepositoryProtocol) {
         self.repository = repository
     }
     

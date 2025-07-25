@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UserDefaultsService.shared.isAutorized ? TabBarController(nibName: nil, bundle: nil) : LoginViewController()
+        window.rootViewController = UserDefaultsService.shared.isAuthorized ? TabBarController(nibName: nil, bundle: nil) : LoginViewController()
         self.window = window
         window.makeKeyAndVisible()
     }

@@ -11,10 +11,10 @@ enum UserDefaultsKey: String {
     case IS_AUTORIZED = "isAuth"
 }
 
-final class UserDefaultsService {
+final class UserDefaultsService: UserDefaultsServiceProtocol {
     static let shared = UserDefaultsService()
     
-    var isAutorized: Bool {
+    var isAuthorized: Bool {
         getValue(type: Bool.self, key: .IS_AUTORIZED) ?? false
     }
     
