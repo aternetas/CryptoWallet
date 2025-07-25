@@ -9,6 +9,15 @@ import UIKit
 import SnapKit
 
 final class LoginView: BaseView, BaseViewProtocol {
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isScrollEnabled = true
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = .init()
+    
     private lazy var robotImageView: UIImageView = .init(image: .robot)
     
     private(set) lazy var usernameTextField: LoginTextField = .init(type: .username)
@@ -33,18 +42,35 @@ final class LoginView: BaseView, BaseViewProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func updateContentInsets(rect: CGRect, isShow: Bool) {
+        scrollView.contentInset.bottom = isShow ? rect.height + CGFloat(110.0) : 0.0
+    }
+    
     func setupView() {
         backgroundColor = .lightGray
     }
     
     func initConstraints() {
-        addSubviews([robotImageView,
-                     usernameTextField,
-                     passwordTextField,
-                     loginButton])
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubviews([robotImageView,
+                                usernameTextField,
+                                passwordTextField,
+                                loginButton])
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.height.width.equalTo(safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(scrollView.contentLayoutGuide)
+            make.height.equalTo(scrollView.frameLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide).priority(300)
+        }
         
         robotImageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(13)
+            make.top.equalToSuperview().offset(13)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(287)
         }

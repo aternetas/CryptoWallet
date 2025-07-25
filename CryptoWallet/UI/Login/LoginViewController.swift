@@ -34,6 +34,12 @@ final class LoginViewController: BaseViewController<LoginViewModel, LoginView> {
         addButtonActions()
     }
     
+    override func adjustKeyboard(rect: CGRect, isShow: Bool) {
+        super.adjustKeyboard(rect: rect, isShow: isShow)
+    
+        rootView.updateContentInsets(rect: rect, isShow: isShow)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

@@ -13,6 +13,20 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.keyboardWillHideNotification,
+                                               object: nil,
+                                               queue: .main) { [weak self] notification in
+            let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? .zero
+            self?.adjustKeyboard(rect: rect, isShow: false)
+        }
+
+        NotificationCenter.default.addObserver(forName: UIApplication.keyboardWillShowNotification,
+                                               object: nil,
+                                               queue: .main) { [weak self] notification in
+            let rect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? .zero
+            self?.adjustKeyboard(rect: rect, isShow: true)
+        }
     }
     
     @available(*, unavailable)
@@ -27,6 +41,11 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
         viewModel.alertManager = self
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.keyboardWillShowNotification, object: nil)
+    }
+    
     func setAsRootViewController(_ viewController: UIViewController) {
         UIApplication.shared.firstKeyWindow?.rootViewController = viewController
     }
@@ -35,6 +54,8 @@ class BaseViewController<VM: BaseViewModel, V: BaseView>: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func adjustKeyboard(rect: CGRect, isShow: Bool) { }
+
     @objc func handleSwipeRight() {
         popViewController()
     }
