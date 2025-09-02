@@ -1,0 +1,69 @@
+//
+//  UIButton+ext.swift
+//  CryptoWallet
+//
+//  Created by aternetas on 15.07.2025.
+//
+
+import UIKit
+
+extension UIButton {
+    convenience init(text: String = "",
+                     textColor: UIColor = .white,
+                     font: UIFont = .regular15,
+                     backgroundColor: UIColor = .black,
+                     cornerRadius: CGFloat = 0.0) {
+        self.init()
+        setTitle(text, for: .normal)
+        setTitleColor(textColor, for: .normal)
+        setTitleColor(textColor, for: .highlighted)
+        
+        layer.cornerRadius = cornerRadius
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .capsule
+        configuration.baseBackgroundColor = backgroundColor
+        
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = font
+            return outgoing
+        }
+        
+        self.configuration = configuration
+    }
+    
+    convenience init(image: UIImage,
+                     backgroundColor: UIColor,
+                     cornerRadius: CGFloat = 25.0) {
+        self.init()
+        layer.cornerRadius = cornerRadius
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .capsule
+        configuration.baseBackgroundColor = backgroundColor
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
+    
+    convenience init(image: UIImage) {
+        self.init()
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .clear
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
+    
+    func configureWithImage(_ image: UIImage) {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .clear
+        configuration.image = image
+        configuration.imagePlacement = .all
+        
+        self.configuration = configuration
+    }
+}
